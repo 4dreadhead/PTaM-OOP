@@ -32,7 +32,7 @@ class Worker:
         print("fish Carp river+sea+pool")
         print("fish Shark ocean\n")
         print("You can write lines in any case.\n")
-        print("Last parameter for the fish: is migratory: true or false.")
+        print("Last parameter for the bird: is migratory: true or false.")
         print("Last parameter for the fish: area. Write it split '+', if fish lives in different areas.")
         print('Accepted area names: "canal", "lake", "ocean", "pool", "pond", "river", "sea", "spring".\n')
         print("If you write other area, it will not be included to the list.")
