@@ -28,7 +28,6 @@ class Bird(BaseAnimal):
         :param description: animal description
         :return: class instance
         """
-        print(description)
         if description["features"] == "true":
             migratory = True
         elif description["features"] == "false":

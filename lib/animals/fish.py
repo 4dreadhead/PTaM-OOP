@@ -36,7 +36,6 @@ class Fish(BaseAnimal):
         :param description: animal description
         :return: class instance
         """
-        print(description)
         successful_parsed_areas = []
         areas = description["features"].split("+")
         for area in areas:
