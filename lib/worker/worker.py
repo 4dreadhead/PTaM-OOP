@@ -10,6 +10,7 @@ class Worker:
 
     def run(self, file_in, file_out):
         self.read_data_from_file(file_in)
+        self.__container.sort_by_name_length()
         self.write_data_to_file(file_out)
         self.__container.clear()
 

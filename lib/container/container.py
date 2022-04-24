@@ -32,6 +32,25 @@ class Container:
         self.size = 0
         self.data.clear()
 
+    def sort_by_name_length(self):
+        """
+        This function sorts animals by length of name in ascending order
+        :return: None
+        """
+        if self.size == 0:
+            print("Given empty container.")
+            return
+
+        for index, animal in enumerate(self.data):
+            print(f"{index + 1}: name: {animal.name}, length: {len(animal.name)}")
+
+        for _ in range(self.size):
+            for i in range(self.size - 1):
+                if len(self.data[i].name) > len(self.data[i + 1].name):
+                    self.data[i], self.data[i + 1] = self.data[i + 1], self.data[i]
+
+        print("Container sorted by name length.\n")
+
     def __str__(self) -> str:
         """
         This function prints container tmp
