@@ -100,6 +100,8 @@ class Worker:
             animal_class = Bird
         elif description["type"] == "fish":
             animal_class = Fish
+        elif description["type"] == "beast":
+            animal_class = Beast
         else:
             raise ValueError
 

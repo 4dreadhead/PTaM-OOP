@@ -38,7 +38,7 @@ class Container:
         :return: None
         """
         if self.size == 0:
-            print("Given empty container.")
+            print("Empty container.")
             return
 
         for index, animal in enumerate(self.data):

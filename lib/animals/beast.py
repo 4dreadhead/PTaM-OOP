@@ -5,13 +5,13 @@ class Beast(BaseAnimal):
     """
     Class of the beast
     """
-    def __init__(self, name: str, beast_type: list):
+    def __init__(self, name: str, age: int, beast_type: list):
         """
         Initialization
         :param name: beast name
         :param beast_type: beast beast_type
         """
-        super().__init__(name)
+        super().__init__(name=name, age=age)
         self.beast_type = beast_type
 
     def __str__(self):
@@ -19,7 +19,7 @@ class Beast(BaseAnimal):
         To string conversion
         :return: readable string with beast info
         """
-        return f"Type: beast.\t\t Name: {self.name}.\t \tBeast type: {', '.join(self.beast_type)}."
+        return f"Type: beast.\t\t Name: {self.name}.\t \tAge: {self.age}.\t \tBeast type: {', '.join(self.beast_type)}."
 
     @staticmethod
     def allowed_beast_types() -> list:
@@ -44,4 +44,4 @@ class Beast(BaseAnimal):
         if len(successful_parsed_beast_types) == 0:
             raise ValueError
 
-        return Beast(name=description["name"], beast_type=successful_parsed_beast_types)
+        return Beast(name=description["name"], age=description["age"], beast_type=successful_parsed_beast_types)
