@@ -2,12 +2,13 @@ class BaseAnimal:
     """
     This is the base animal class
     """
-    def __init__(self, name: str):
+    def __init__(self, name: str, age: int):
         """
         Initialization
         :param name: name of animal
         """
         self.name: str = name
+        self.age: int = age
 
     def __str__(self) -> str:
         """

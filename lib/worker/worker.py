@@ -86,13 +86,14 @@ class Worker:
         :return: animal
         """
         line = line.replace("\n", "").split(" ")
-        if len(line) != 3:
+        if len(line) != 4:
             raise ValueError
 
         description = {
             "type": line[0].lower(),
             "name": line[1].lower(),
-            "features": line[2].lower()
+            "age": int(line[2]),
+            "features": line[3].lower()
         }
 
         if description["type"] == "bird":

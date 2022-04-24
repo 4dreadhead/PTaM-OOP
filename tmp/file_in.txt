@@ -1,6 +1,6 @@
-bird Stork True
-bird Eagle False
-bird Macaw True
-fish Carp river+sea
-fish Shark OcEaN
-beast Bear predator+herbivores
+bird Stork 6 True
+bird Eagle 5 False
+bird Macaw 4 True
+fish Carp 3 river+sea
+fish Shark 2 OcEaN
+beast Bear 1 predator+herbivores

@@ -5,13 +5,13 @@ class Bird(BaseAnimal):
     """
     Class of the fish bird
     """
-    def __init__(self, name="Not_specified", is_migratory=None):
+    def __init__(self, name="Not_specified", age="not_specified", is_migratory=None):
         """
         Initialization
         :param name: bird name
         :param is_migratory: is migratory bird
         """
-        super().__init__(name=name)
+        super().__init__(name=name, age=age)
         self.is_migratory = is_migratory
 
     def __str__(self):
@@ -19,7 +19,7 @@ class Bird(BaseAnimal):
         To string conversion
         :return: readable string with bird info
          """
-        return f"Type: bird.\t\t Name: {self.name}.\t \tIs migratory: {self.is_migratory}."
+        return f"Type: bird.\t\t Name: {self.name}.\t \tAge: {self.age}.\t\tIs migratory: {self.is_migratory}."
 
     @staticmethod
     def create_class_with_description(description):
@@ -35,4 +35,4 @@ class Bird(BaseAnimal):
         else:
             raise ValueError
 
-        return Bird(name=description["name"], is_migratory=migratory)
+        return Bird(name=description["name"], age=description["age"], is_migratory=migratory)
