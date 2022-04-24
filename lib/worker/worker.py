@@ -1,6 +1,5 @@
-from ..container.container import Container
-from ..animals.bird import Bird
-from ..animals.fish import Fish
+from lib.container import Container
+from lib.animals import *
 import sys
 from accessify import private
 
@@ -99,6 +98,8 @@ class Worker:
             animal_class = Bird
         elif description["type"] == "fish":
             animal_class = Fish
+        elif description["type"] == "beast":
+            animal_class = Beast
         else:
             raise ValueError
 

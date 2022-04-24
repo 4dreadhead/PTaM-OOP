@@ -2,13 +2,14 @@ class Container:
     """
     This is class of the container
     """
-    def __init__(self, max_size=128):
+    MAX_CONTAINER_SIZE = 128
+
+    def __init__(self):
         """
         Initialization
-        :param max_size: max size of container
         """
         self.size = 0
-        self.max_size = max_size
+        self.max_size = Container.MAX_CONTAINER_SIZE
         self.data = []
 
     def add(self, animal) -> None:

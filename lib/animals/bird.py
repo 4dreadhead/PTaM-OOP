@@ -19,7 +19,7 @@ class Bird(BaseAnimal):
         To string conversion
         :return: readable string with bird info
          """
-        return f"Type: bird.\t\tName: {self.name}.\t  Is migratory: {self.is_migratory}."
+        return f"Type: bird.\t\t Name: {self.name}.\t \tIs migratory: {self.is_migratory}."
 
     @staticmethod
     def create_class_with_description(description):

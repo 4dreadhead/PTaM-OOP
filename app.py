@@ -1,5 +1,5 @@
 #!venv/bin/python
-from lib.worker.worker import Worker
+from lib.worker import Worker
 import sys
 from sys import argv
 

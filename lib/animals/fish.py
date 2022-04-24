@@ -19,7 +19,7 @@ class Fish(BaseAnimal):
         To string conversion
         :return: readable string with fish info
         """
-        return f"Type: fish.\t\tName: {self.name}.\t  Area: {', '.join(self.area)}."
+        return f"Type: fish.\t\t Name: {self.name}.\t \tArea: {', '.join(self.area)}."
 
     @staticmethod
     def allowed_areas() -> list:
