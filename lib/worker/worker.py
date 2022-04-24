@@ -79,10 +79,7 @@ class Worker:
     def parse_line(self, line):
         """
         This function parses string to right animal class
-        :param line: description of animal [a, b, c], where:
-        a: str: animal type ('bird' or 'fish'),
-        b: str: animal name,
-        c: bool | list: animal features (area: list: for fish; migratory: bool: for bird).
+        :param line: description of animal
         :return: animal
         """
         line = line.replace("\n", "").split(" ")
