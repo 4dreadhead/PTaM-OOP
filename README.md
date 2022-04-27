@@ -5,12 +5,14 @@
 ### To run application
 - Install python3
 - Install 'requirements.txt'
+
 `pip install -r requirements.txt`
 
 if using pip3:
 
 `pip3 install -r requirements.txt`
 - Run file 'app.py' with path to input and output files, example:
+
 `python app.py tmp/file_in.txt tmp/file_out.txt`
 ---
 ## Kind
