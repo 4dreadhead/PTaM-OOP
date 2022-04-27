@@ -1,7 +1,14 @@
 Animal count: 6. Animals:
-1: Type: fish.		 Name: carp.	 	Age: 3.		Area: river, sea.
-2: Type: beast.		 Name: bear.	 	Age: 1.	 	Beast type: predator, herbivores.
-3: Type: bird.		 Name: stork.	 	Age: 6.		Is migratory: True.
-4: Type: bird.		 Name: eagle.	 	Age: 5.		Is migratory: False.
-5: Type: bird.		 Name: macaw.	 	Age: 4.		Is migratory: True.
-6: Type: fish.		 Name: shark.	 	Age: 2.		Area: ocean.
+----------------------------------------------------------------------
+1: Type: fish	|	Name: carp	|	Age: 3	|	Area: river, sea
+----------------------------------------------------------------------
+2: Type: beast	|	Name: bear	|	Age: 1	|	Beast type: predator, herbivores
+----------------------------------------------------------------------
+3: Type: bird	|	Name: stork	|	Age: 6	|	Is migratory: True
+----------------------------------------------------------------------
+4: Type: bird	|	Name: eagle	|	Age: 5	|	Is migratory: False
+----------------------------------------------------------------------
+5: Type: bird	|	Name: macaw	|	Age: 4	|	Is migratory: True
+----------------------------------------------------------------------
+6: Type: fish	|	Name: shark	|	Age: 2	|	Area: ocean
+----------------------------------------------------------------------

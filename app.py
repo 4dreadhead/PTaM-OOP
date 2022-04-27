@@ -1,7 +1,11 @@
 #!venv/bin/python
 from lib.worker import Worker
 import sys
+import os
 from sys import argv
+
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def run(args: list) -> None:

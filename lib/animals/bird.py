@@ -5,21 +5,23 @@ class Bird(BaseAnimal):
     """
     Class of the fish bird
     """
-    def __init__(self, name="Not_specified", age="not_specified", is_migratory=None):
+    def __init__(self, **kwargs):
         """
         Initialization
         :param name: bird name
         :param is_migratory: is migratory bird
         """
-        super().__init__(name=name, age=age)
+        is_migratory = kwargs.pop("is_migratory")
+
+        super().__init__(**kwargs)
         self.is_migratory = is_migratory
 
-    def __str__(self):
+    def unique_features(self) -> str:
         """
-        To string conversion
+        To string conversion of migratory
         :return: readable string with bird info
-         """
-        return f"Type: bird.\t\t Name: {self.name}.\t \tAge: {self.age}.\t\tIs migratory: {self.is_migratory}."
+        """
+        return f"Is migratory: {self.is_migratory}"
 
     @staticmethod
     def create_class_with_description(description):
@@ -28,11 +30,15 @@ class Bird(BaseAnimal):
         :param description: animal description
         :return: class instance
         """
-        if description["features"] == "true":
+        bird_fields = {**description["common_fields"]}
+
+        if description["unique_features"] == "true":
             migratory = True
-        elif description["features"] == "false":
+        elif description["unique_features"] == "false":
             migratory = False
         else:
-            raise ValueError
+            raise ValueError("Unknown migratory type (must be 'true' of 'false')")
 
-        return Bird(name=description["name"], age=description["age"], is_migratory=migratory)
+        bird_fields["is_migratory"] = migratory
+
+        return Bird(**bird_fields)

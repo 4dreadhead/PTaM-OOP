@@ -37,7 +37,7 @@ class Container:
         This function sorts animals by length of name in ascending order
         :return: None
         """
-        if self.size == 0:
+        if not self.size:
             print("Empty container.")
             return
 
@@ -57,11 +57,14 @@ class Container:
         :return: str: container tmp
         """
         data = f"Animal count: {self.size}."
+        dividing_line = "-" * 70 + "\n"
 
-        if self.size > 0:
+        if self.size:
             data += " Animals:\n"
+            data += dividing_line
 
             for i in range(self.size):
                 data += f"{i + 1}: {self.data[i]}\n"
+                data += dividing_line
 
         return data

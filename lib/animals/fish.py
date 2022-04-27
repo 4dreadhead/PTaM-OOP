@@ -5,30 +5,23 @@ class Fish(BaseAnimal):
     """
     Class of the fish
     """
-    def __init__(self, name: str, age: int, area: list):
+    ALLOWED_AREAS = ["canal", "lake", "ocean", "pool", "pond", "river", "sea", "spring"]
+
+    def __init__(self, **kwargs):
         """
         Initialization
-        :param name: fish name
-        :param area: fish area
         """
-        super().__init__(name=name, age=age)
-        self.area = area
-        self.age = age
+        area = kwargs.pop("area")
 
-    def __str__(self):
+        super().__init__(**kwargs)
+        self.area = area
+
+    def unique_features(self) -> str:
         """
-        To string conversion
+        To string conversion of fish area
         :return: readable string with fish info
         """
-        return f"Type: fish.\t\t Name: {self.name}.\t \tAge: {self.age}.\t\tArea: {', '.join(self.area)}."
-
-    @staticmethod
-    def allowed_areas() -> list:
-        """
-        This function returns list of the allowed areas for the fish
-        :return: list of allowed areas
-        """
-        return ["canal", "lake", "ocean", "pool", "pond", "river", "sea", "spring"]
+        return f"Area: {', '.join(self.area)}"
 
     @staticmethod
     def create_class_with_description(description):
@@ -37,12 +30,20 @@ class Fish(BaseAnimal):
         :param description: animal description
         :return: class instance
         """
+        # Unpacking BaseAnimal fields
+        fish_fields = {**description["common_fields"]}
+
+        # Parse unique fish fields
         successful_parsed_areas = []
-        areas = description["features"].split("+")
+        areas = description["unique_features"].split("+")
         for area in areas:
-            if area in Fish.allowed_areas():
+            if area in Fish.ALLOWED_AREAS:
                 successful_parsed_areas.append(area)
         if len(successful_parsed_areas) == 0:
-            raise ValueError
+            raise ValueError("Unknown fish areas given")
 
-        return Fish(name=description["name"], age=description["age"], area=successful_parsed_areas)
+        # Add unique fish fields
+        fish_fields["area"] = successful_parsed_areas
+
+        # Create Fish class with unpacked kwargs
+        return Fish(**fish_fields)

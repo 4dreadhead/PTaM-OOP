@@ -5,6 +5,9 @@ from accessify import private
 
 
 class Worker:
+    """
+    Application worker
+    """
     def __init__(self):
         self.__container = Container()
 
@@ -24,19 +27,8 @@ class Worker:
         print("Example of command line:")
         print("app.py file_in.txt file_out.txt\n")
         print("You need to fill input file with tmp of animals.")
+        print("Example in 'tmp/file_in.txt'\n")
         print(f"Default max size of container: 128.\n")
-        print("Example of input file:")
-        print("bird Stork True")
-        print("bird Eagle false")
-        print("bird Macaw tRuE")
-        print("fish Carp river+sea+pool")
-        print("fish Shark ocean\n")
-        print("You can write lines in any case.\n")
-        print("Last parameter for the bird: is migratory: true or false.")
-        print("Last parameter for the fish: area. Write it split '+', if fish lives in different areas.")
-        print('Accepted area names: "canal", "lake", "ocean", "pool", "pond", "river", "sea", "spring".\n')
-        print("If you write other area, it will not be included to the list.")
-        print("If optional parameter of animal will be wrong or empty, line will not be included to the container.")
         print("----------------------------------------------------------------------------------------------------")
 
     @private
@@ -46,20 +38,26 @@ class Worker:
         :param file_in: path to the file
         :return: None
         """
+        errors_log = []
         errors_count = 0
         try:
             with open(file_in) as file:
                 lines = file.readlines()
-                for line in lines:
+                for index, line in enumerate(lines):
                     try:
                         self.__container.add(self.parse_line(line))
-                    except (ValueError, NameError):
+                    except (ValueError, NameError, KeyError, TypeError) as error:
+                        errors_log.append(f"line {index + 1}: {str(error)}")
                         errors_count += 1
                     except BufferError:
                         print(f"! Warning: Container is full. Read only {self.__container.max_size} lines.")
                         break
 
             print(f"File read with {errors_count} errors.")
+            if errors_log:
+                print("Errors info:")
+                print("\n".join(errors_log))
+
         except FileNotFoundError:
             print("Incorrect command line: No such input file.")
             sys.exit()
@@ -83,23 +81,18 @@ class Worker:
         :return: animal
         """
         line = line.replace("\n", "").split(" ")
-        if len(line) != 4:
-            raise ValueError
+        if len(line) != len(BaseAnimal.DEFAULT_FIELDS) + 2:
+            raise ValueError(
+                f"Wrong number of arguments (expected {len(BaseAnimal.DEFAULT_FIELDS) + 2}, got {len(line)})."
+            )
+
+        common_fields = {value: line[index + 1] for index, value in enumerate(BaseAnimal.DEFAULT_FIELDS)}
 
         description = {
-            "type": line[0].lower(),
-            "name": line[1].lower(),
-            "age": int(line[2]),
-            "features": line[3].lower()
+            "class_name": line[0],
+            "common_fields": common_fields,
+            "unique_features": line[-1].lower()
         }
-
-        if description["type"] == "bird":
-            animal_class = Bird
-        elif description["type"] == "fish":
-            animal_class = Fish
-        elif description["type"] == "beast":
-            animal_class = Beast
-        else:
-            raise ValueError
+        animal_class = globals()[description["class_name"]]
 
         return animal_class.create_class_with_description(description)

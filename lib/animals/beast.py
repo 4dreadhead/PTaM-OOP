@@ -5,29 +5,25 @@ class Beast(BaseAnimal):
     """
     Class of the beast
     """
-    def __init__(self, name: str, age: int, beast_type: list):
+    ALLOWED_BEAST_TYPES = ["predator", "herbivores", "omnivores", "insectivores"]
+
+    def __init__(self, **kwargs):
         """
         Initialization
         :param name: beast name
         :param beast_type: beast beast_type
         """
-        super().__init__(name=name, age=age)
+        beast_type = kwargs.pop("beast_type")
+
+        super().__init__(**kwargs)
         self.beast_type = beast_type
 
-    def __str__(self):
+    def unique_features(self) -> str:
         """
-        To string conversion
+        To string conversion of beast type
         :return: readable string with beast info
         """
-        return f"Type: beast.\t\t Name: {self.name}.\t \tAge: {self.age}.\t \tBeast type: {', '.join(self.beast_type)}."
-
-    @staticmethod
-    def allowed_beast_types() -> list:
-        """
-        This function returns list of the allowed beast types
-        :return: list of allowed beast_types
-        """
-        return ["predator", "herbivores", "omnivores", "insectivores"]
+        return f"Beast type: {', '.join(self.beast_type)}"
 
     @staticmethod
     def create_class_with_description(description):
@@ -36,12 +32,21 @@ class Beast(BaseAnimal):
         :param description: animal description
         :return: class instance
         """
+        # Unpacking BaseAnimal fields
+        beast_fields = {**description["common_fields"]}
+
+        # Parse unique beast fields
         successful_parsed_beast_types = []
-        beast_types = description["features"].split("+")
+        beast_types = description["unique_features"].split("+")
+
         for beast_type in beast_types:
-            if beast_type in Beast.allowed_beast_types():
+            if beast_type in Beast.ALLOWED_BEAST_TYPES:
                 successful_parsed_beast_types.append(beast_type)
         if len(successful_parsed_beast_types) == 0:
-            raise ValueError
+            raise ValueError("Unknown beast types given")
 
-        return Beast(name=description["name"], age=description["age"], beast_type=successful_parsed_beast_types)
+        # Add unique beast fields
+        beast_fields["beast_type"] = successful_parsed_beast_types
+
+        # Create Beast class with unpacked kwargs
+        return Beast(**beast_fields)
