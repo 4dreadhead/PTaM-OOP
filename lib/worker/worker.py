@@ -8,8 +8,17 @@ class Worker:
     def __init__(self):
         self.__container = Container()
 
+    def print_filtered_data(self):
+        for animal_class in [Bird, Fish]:
+            print(f"Filter by {animal_class.__name__}")
+            filtered_data = self.__container.filter_by(animal_class)
+
+            for animal in filtered_data:
+                print(animal)
+
     def run(self, file_in, file_out):
         self.read_data_from_file(file_in)
+        self.print_filtered_data()
         self.write_data_to_file(file_out)
         self.__container.clear()
 

@@ -32,6 +32,9 @@ class Container:
         self.size = 0
         self.data.clear()
 
+    def filter_by(self, animal_class):
+        return [animal for animal in self.data if type(animal) is animal_class]
+
     def __str__(self) -> str:
         """
         This function prints container tmp
