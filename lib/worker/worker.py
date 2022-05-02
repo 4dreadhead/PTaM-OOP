@@ -10,7 +10,7 @@ class Worker:
 
     def print_filtered_data(self):
         for animal_class in [Bird, Fish]:
-            print(f"Filter by {animal_class.__name__}")
+            print(f"\nFilter by {animal_class.__name__}")
             filtered_data = self.__container.filter_by(animal_class)
 
             for animal in filtered_data:
