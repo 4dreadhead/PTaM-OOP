@@ -8,9 +8,18 @@ class Worker:
     def __init__(self):
         self.__container = Container()
 
+    def print_filtered_data(self):
+        for animal_class in [Bird, Fish]:
+            print(f"\nFilter by {animal_class.__name__}")
+            filtered_data = self.__container.filter_by(animal_class)
+
+            for animal in filtered_data:
+                print(animal)
+
     def run(self, file_in, file_out):
         self.read_data_from_file(file_in)
         self.__container.sort_by_name_length()
+        self.print_filtered_data()
         self.write_data_to_file(file_out)
         self.__container.clear()
 
@@ -32,7 +41,7 @@ class Worker:
         print("fish Carp river+sea+pool")
         print("fish Shark ocean\n")
         print("You can write lines in any case.\n")
-        print("Last parameter for the bird: is migratory: true or false.")
+        print("Last parameter for the fish: is migratory: true or false.")
         print("Last parameter for the fish: area. Write it split '+', if fish lives in different areas.")
         print('Accepted area names: "canal", "lake", "ocean", "pool", "pond", "river", "sea", "spring".\n')
         print("If you write other area, it will not be included to the list.")
