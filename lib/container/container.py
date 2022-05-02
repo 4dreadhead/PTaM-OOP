@@ -51,6 +51,9 @@ class Container:
 
         print("Container sorted by name length.\n")
 
+    def filter_by(self, animal_class):
+        return [animal for animal in self.data if type(animal) is animal_class]
+
     def __str__(self) -> str:
         """
         This function prints container tmp
